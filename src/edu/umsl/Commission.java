@@ -1,25 +1,25 @@
 package edu.umsl;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Commission extends Employee
 {
+    Scanner sc = new Scanner(System.in);
+    
     @Override
     public void computeGross()
     {
-        int commission;
         int units;
-        double price;
-        Scanner sc = new Scanner(System.in);
+        float price;
         
         System.out.println("Enter number of units sold by this employee: "); 
         units = sc.nextInt();
         
         System.out.println("Enter unit price: ");
-        price = sc.nextDouble();
+        price = sc.nextFloat();
         
-        commission = (double)(units * price)/2;
-        
-    }
-    
-}
+        gross = ((units * price) /2);
+        System.out.println("Gross pay(Total Comission): $" + gross);        
+                
+    }//end of compGross
+}//end of Commission

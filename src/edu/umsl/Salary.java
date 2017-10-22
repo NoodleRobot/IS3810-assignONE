@@ -1,36 +1,28 @@
 package edu.umsl;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Salary extends Employee
 {
     @Override
     public void computeGross()
     {
-        int selection;
+        //int select;
         Scanner sc = new Scanner (System.in);
         
-        System.out.println("SALARIED EMPLOYEE MENU");
-        System.out.println("***************************************");
-        System.out.println("1. Staff");
-        System.out.println("2. Executive");
-        System.out.println("***************************************");
+        System.out.println("Please select (S)taff or (E)xecutive: ");
+        String s = sc.next();
+        char select = s.charAt(0);
         
-        selection = sc.nextInt();
-        
-        switch(selection)
+        if(select == 'S' || select == 's')
         {
-            case 1:
-                gross = 500000;
-                break;
-            case 2:
-                gross = 100000;
-                break;
-            default: 
-                System.out.println("Invalid selection. Please try again.");                
-                  
+            gross = 50000;
         }
-    }
-
-    
-}
+        else if(select == 'E' || select == 'e')
+        {
+            gross = 100000;
+        }
+        System.out.println("Gross pay: " + gross);
+        
+    }//end of compGross
+}//end of Salary class
