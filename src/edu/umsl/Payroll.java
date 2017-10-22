@@ -2,6 +2,8 @@ package edu.umsl;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Payroll //implements Serializable
 {//begin payroll class
@@ -132,16 +134,17 @@ public class Payroll //implements Serializable
     {
         try
         {
-            FileOutputStream fos = new FileOutputStream("SaveData");
-            try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-                oos.writeObject(empArray);
-                oos.flush();
+            FileInputStream fis = new FileInputStream("SaveData");
+            try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+                empArray = (Employee[]) ois.readObject();
                 //System.out.println("Employee data has been loaded.");
             }
         }
         catch(IOException ioe)
         {
                     
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//end of loadEmp
             
