@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Employee implements Serializable
 {
-    static Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     //begin attributes
     float rate=30.0f;
     float taxrate=0.2f;
@@ -59,7 +59,7 @@ public class Employee implements Serializable
                         displayEmployee();
                         break;
                     case 6:
-                        System.out.println("\nExiting payroll menu...........");
+                        System.out.println("Exiting payroll menu...........");
                         return;
                         //System.exit(0);
                     default:

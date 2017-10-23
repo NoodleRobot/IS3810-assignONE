@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 public class Salary extends Employee
 {
+    transient Scanner scc = new Scanner (System.in);
+    
     @Override
     public void computeGross()
     {
         //int select;
-        Scanner sc = new Scanner (System.in);
         
         System.out.println("Please select (S)taff or (E)xecutive: ");
-        String s = sc.next();
+        String s = scc.next();
         char select = s.charAt(0);
         
         if(select == 'S' || select == 's')

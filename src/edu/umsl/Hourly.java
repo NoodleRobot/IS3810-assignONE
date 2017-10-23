@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Hourly extends Employee
 {
-    Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     
     @Override
     public void computeGross()

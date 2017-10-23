@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Commission extends Employee
 {
-    Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     
     @Override
     public void computeGross()

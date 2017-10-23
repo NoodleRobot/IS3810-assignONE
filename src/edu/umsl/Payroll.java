@@ -5,9 +5,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Payroll //implements Serializable
+public class Payroll implements Serializable
 {//begin payroll class
-    static Scanner sc = new Scanner(System.in);
+    transient Scanner sc = new Scanner(System.in);
     static Employee[] empArray = new Employee[3];
     
     public static void main(String[] args) throws IOException
@@ -118,34 +118,32 @@ public class Payroll //implements Serializable
     {
         try
         {
-            FileOutputStream fos = new FileOutputStream("SaveData");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            FileOutputStream fos = new FileOutputStream("EmployeeData.txt");
+            ObjectOutputStream oos = new ObjectOutputStream (fos);
+            System.out.println("Data saved.");
             oos.writeObject(empArray);
             oos.flush();
-            //System.out.println("Employee data has been saved.");
+            oos.close();
         }
-        catch(IOException ioe)
+        catch(IOException e)
         {
-            System.err.println(ioe);
+            System.err.println(e);
         }
     }//end of saveEmp
             
-    public void loadEmp()
+    public void loadEmp() throws IOException
     {
-        try
-        {
-            FileInputStream fis = new FileInputStream("SaveData");
-            try (ObjectInputStream ois = new ObjectInputStream(fis)) {
-                empArray = (Employee[]) ois.readObject();
-                //System.out.println("Employee data has been loaded.");
-            }
-        }
-        catch(IOException ioe)
-        {
-                    
+        FileInputStream fis = new FileInputStream("EmployeeData.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        try {
+            empArray = (Employee[])ois.readObject();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ois.close();
+        fis.close();
+        System.out.println("Employee data loaded.");
+        
     }//end of loadEmp
             
 }//end of payroll class
